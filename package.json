@@ -1,0 +1,19 @@
+{
+  "name": "workshop-13",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cron-master": "^1.0.1",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "node-cron": "^3.0.0",
+    "nodemon": "^2.0.15"
+  }
+}
