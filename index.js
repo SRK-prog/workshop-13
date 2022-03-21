@@ -1,6 +1,9 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const cron = require("node-cron");
+const cmaster = require("cron-master");
+const path = require("path");
+
+const instance = cmaster.getInstance();
 
 const app = express();
 app.use(express.json());
@@ -39,9 +42,12 @@ app.get("/validate", tokenVerify, (req, res) => {
     if (err) {
       res.json(false);
     } else {
-      cron.schedule("* * * * *", () => {
-        let time = new Date(Date.now()).toString();
-        console.log("The is date " + time);
+      instance.loadJobs(path.join(__dirname, "./Jobs"), function (err, jobs) {
+        if (err) {
+          throw err;
+        } else {
+          instance.startJobs();
+        }
       });
       res.json(true);
     }

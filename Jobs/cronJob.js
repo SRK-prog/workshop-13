@@ -1,12 +1,16 @@
 var CronMasterJob = require("cron-master").CronMasterJob;
 
 module.exports = new CronMasterJob({
-  // The usual params that you pass to the "cron" module go here
   cronParams: {
-    cronTime: "* * * * * *",
+    cronTime: "* * * * *",
     onTick: function (job, done) {
-      console.log("running job");
+      callTime();
       done(null, "result");
     },
   },
 });
+
+const callTime = () => {
+  let time = new Date(Date.now()).toString();
+  console.log("The is date " + time);
+};
